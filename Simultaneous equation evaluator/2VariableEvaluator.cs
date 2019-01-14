@@ -25,7 +25,20 @@ namespace Simultaneous_equation_evaluator
             MessageBox.Show(Convert.ToString(passed));
             if(passed == true)
             {
+                Regex re = new Regex(@"^(?<x>0x|(-?[1-9][0-9]*x))([+-])(0y|([1-9][0-9]*y))([+-]?)([1-9]*)=(-?\d+)$");
                 
+
+                Match matchX = re.Match(equation1);
+
+                string preXcoefficient = matchX.Groups["x"].Value;
+                for(int i = 0; i <= preXcoefficient.Length; i++)
+                {
+                    if(preXcoefficient[i] == 'x')
+                    {
+                        preXcoefficient = preXcoefficient.Remove(i, 1);
+                    }
+                }
+                MessageBox.Show(preXcoefficient);
             }
            
             

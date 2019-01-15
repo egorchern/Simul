@@ -23,13 +23,18 @@ namespace Simultaneous_equation_evaluator
             string equation2 = txtEq2.Text;
             bool passed = PassedVerification(equation1, equation2);
             MessageBox.Show(Convert.ToString(passed));
-            if(passed == true)
+            if (passed == true)
             {
                 Regex re1 = new Regex(@"^(?<x>0x|(-?[1-9][0-9]*x))(?<y>[+-](0y|([1-9][0-9]*y)))(?<c>[+-][1-9][0-9]*)?=(?<eq>-?\d+)$");
                 Match matchX = re1.Match(equation1);
                 Regex re2 = new Regex(@"^(?<x1>0x|(-?[1-9][0-9]*x))(?<y1>[+-](0y|([1-9][0-9]*y)))(?<c1>[+-][1-9][0-9]*)?=(?<eq1>-?\d+)$");
                 Match matchY = re2.Match(equation2);
-
+                int Coefx = 0;
+                int Coefx1 = 0;
+                int Coefy = 0;
+                int Coefy1 = 0;
+                int equalss = 0;
+                int equalss1 = 0;
                 if (matchX.Success)
                 {
 
@@ -38,7 +43,7 @@ namespace Simultaneous_equation_evaluator
                     string preYcoefficient = matchX.Groups["y"].Value;
                     string constant = matchX.Groups["c"].Value;
                     string equals = matchX.Groups["eq"].Value;
-                    int equalss = 0;
+
 
                     for (int i = 0; i <= preXcoefficient.Length; i++)
                     {
@@ -47,7 +52,7 @@ namespace Simultaneous_equation_evaluator
                         {
                             preXcoefficient = preXcoefficient.Remove(i, 1);
                         }
-                        else if(preXcoefficient[i] == '+')
+                        else if (preXcoefficient[i] == '+')
                         {
                             preXcoefficient = preXcoefficient.Remove(i, 1);
                         }
@@ -79,8 +84,8 @@ namespace Simultaneous_equation_evaluator
                     }
 
                     MessageBox.Show($"Debug info: {preXcoefficient}:{preYcoefficient}:{equalss}");
-                    int Coefx = Convert.ToInt32(preXcoefficient);
-                    int Coefy = Convert.ToInt32(preYcoefficient);
+                    Coefx = Convert.ToInt32(preXcoefficient);
+                    Coefy = Convert.ToInt32(preYcoefficient);
 
 
                 }
@@ -92,8 +97,8 @@ namespace Simultaneous_equation_evaluator
                     string preYcoefficient1 = matchY.Groups["y1"].Value;
                     string constant1 = matchY.Groups["c1"].Value;
                     string equals1 = matchY.Groups["eq1"].Value;
-                    int equalss1 = 0;
-                    
+
+
                     for (int i = 0; i <= preXcoefficient1.Length; i++)
                     {
                         if (preXcoefficient1[i] == 'x')
@@ -122,7 +127,7 @@ namespace Simultaneous_equation_evaluator
                         {
                             constant1 = constant1.Remove(0, 1);
 
-                            
+
                             equalss1 = Convert.ToInt32(equals1) + Convert.ToInt32(constant1);
                         }
                         else
@@ -132,13 +137,21 @@ namespace Simultaneous_equation_evaluator
                     }
 
                     MessageBox.Show($"Debug info: {preXcoefficient1}:{preYcoefficient1}:{equalss1}");
-                    int Coefx1 = Convert.ToInt32(preXcoefficient1);
-                    int Coefy1 = Convert.ToInt32(preYcoefficient1);
-                    
+                    Coefx1 = Convert.ToInt32(preXcoefficient1);
+                    Coefy1 = Convert.ToInt32(preYcoefficient1);
+
                 }
+                MessageBox.Show($"First Equation: {Coefx} {Coefy} {equalss}\n Second Equation: {Coefx1} {Coefy1} {equalss1}");
+                int[,] matrixM = new int[,]
+                {
+                    {Coefx, Coefy },
+                    {Coefx1, Coefy1 }
+                };
             }
-           
             
+
+
+
         }
         public static bool PassedVerification(string r, string r1)
         {

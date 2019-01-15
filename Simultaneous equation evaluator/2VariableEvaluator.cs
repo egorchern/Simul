@@ -25,29 +25,126 @@ namespace Simultaneous_equation_evaluator
             MessageBox.Show(Convert.ToString(passed));
             if(passed == true)
             {
-                Regex re = new Regex(@"^(?<x>0x|(-?[1-9][0-9]*x))([+-])(0y|([1-9][0-9]*y))([+-]?)([1-9]*)=(-?\d+)$");
-                
+                Regex re1 = new Regex(@"^(?<x>0x|(-?[1-9][0-9]*x))(?<y>[+-](0y|([1-9][0-9]*y)))(?<c>[+-][1-9][0-9]*)?=(?<eq>-?\d+)$");
+                Match matchX = re1.Match(equation1);
+                Regex re2 = new Regex(@"^(?<x1>0x|(-?[1-9][0-9]*x))(?<y1>[+-](0y|([1-9][0-9]*y)))(?<c1>[+-][1-9][0-9]*)?=(?<eq1>-?\d+)$");
+                Match matchY = re2.Match(equation2);
 
-                Match matchX = re.Match(equation1);
-
-                string preXcoefficient = matchX.Groups["x"].Value;
-                for(int i = 0; i <= preXcoefficient.Length; i++)
+                if (matchX.Success)
                 {
-                    if(preXcoefficient[i] == 'x')
+
+
+                    string preXcoefficient = matchX.Groups["x"].Value;
+                    string preYcoefficient = matchX.Groups["y"].Value;
+                    string constant = matchX.Groups["c"].Value;
+                    string equals = matchX.Groups["eq"].Value;
+                    int equalss = 0;
+
+                    for (int i = 0; i <= preXcoefficient.Length; i++)
                     {
-                        preXcoefficient = preXcoefficient.Remove(i, 1);
+
+                        if (preXcoefficient[i] == 'x')
+                        {
+                            preXcoefficient = preXcoefficient.Remove(i, 1);
+                        }
+                        else if(preXcoefficient[i] == '+')
+                        {
+                            preXcoefficient = preXcoefficient.Remove(i, 1);
+                        }
                     }
+                    for (int i = 0; i <= preYcoefficient.Length; i++)
+                    {
+                        if (preYcoefficient[i] == 'y')
+                        {
+                            preYcoefficient = preYcoefficient.Remove(i, 1);
+                        }
+                        else if (preYcoefficient[i] == '+')
+                        {
+                            preYcoefficient = preYcoefficient.Remove(i, 1);
+                        }
+                    }
+                    if (constant != String.Empty)
+                    {
+                        if (constant.Contains("-"))
+                        {
+                            constant = constant.Remove(0, 1);
+
+
+                            equalss = Convert.ToInt32(equals) + Convert.ToInt32(constant);
+                        }
+                        else
+                        {
+                            equalss = Convert.ToInt32(equals) - Convert.ToInt32(constant);
+                        }
+                    }
+
+                    MessageBox.Show($"Debug info: {preXcoefficient}:{preYcoefficient}:{equalss}");
+                    int Coefx = Convert.ToInt32(preXcoefficient);
+                    int Coefy = Convert.ToInt32(preYcoefficient);
+
+
                 }
-                MessageBox.Show(preXcoefficient);
+                if (matchY.Success)
+                {
+
+
+                    string preXcoefficient1 = matchY.Groups["x1"].Value;
+                    string preYcoefficient1 = matchY.Groups["y1"].Value;
+                    string constant1 = matchY.Groups["c1"].Value;
+                    string equals1 = matchY.Groups["eq1"].Value;
+                    int equalss1 = 0;
+                    
+                    for (int i = 0; i <= preXcoefficient1.Length; i++)
+                    {
+                        if (preXcoefficient1[i] == 'x')
+                        {
+                            preXcoefficient1 = preXcoefficient1.Remove(i, 1);
+                        }
+                        else if (preXcoefficient1[i] == '+')
+                        {
+                            preXcoefficient1 = preXcoefficient1.Remove(i, 1);
+                        }
+                    }
+                    for (int i = 0; i <= preYcoefficient1.Length; i++)
+                    {
+                        if (preYcoefficient1[i] == 'y')
+                        {
+                            preYcoefficient1 = preYcoefficient1.Remove(i, 1);
+                        }
+                        else if (preYcoefficient1[i] == '+')
+                        {
+                            preYcoefficient1 = preYcoefficient1.Remove(i, 1);
+                        }
+                    }
+                    if (constant1 != String.Empty)
+                    {
+                        if (constant1.Contains("-"))
+                        {
+                            constant1 = constant1.Remove(0, 1);
+
+                            
+                            equalss1 = Convert.ToInt32(equals1) + Convert.ToInt32(constant1);
+                        }
+                        else
+                        {
+                            equalss1 = Convert.ToInt32(equals1) - Convert.ToInt32(constant1);
+                        }
+                    }
+
+                    MessageBox.Show($"Debug info: {preXcoefficient1}:{preYcoefficient1}:{equalss1}");
+                    int Coefx1 = Convert.ToInt32(preXcoefficient1);
+                    int Coefy1 = Convert.ToInt32(preYcoefficient1);
+                    
+                }
             }
            
             
         }
         public static bool PassedVerification(string r, string r1)
         {
-            if(Regex.IsMatch(r, @"^(0x|(-?[1-9][0-9]*x))([+-])(0y|([1-9][0-9]*y))([+-]?)([1-9]*)=(-?\d+)$") == true)
+            if(Regex.IsMatch(r, @"^(0x|(-?[1-9][0-9]*x))([+-])(0y|([1-9][0-9]*y))([+-][1-9][0-9]*)?=(-?\d+)$") == true)
             {
-                if(Regex.IsMatch(r1, @"^(0x|(-?[1-9][0-9]*x))([+-])(0y|([1-9][0-9]*y))([+-]?)([1-9]*)=(-?\d+)$") == true)
+                if(Regex.IsMatch(r1, @"^(0x|(-?[1-9][0-9]*x))([+-])(0y|([1-9][0-9]*y))([+-][1-9][0-9]*)?=(-?\d+)$") == true)
                 {
                     return true;
                 }

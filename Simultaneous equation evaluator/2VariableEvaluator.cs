@@ -147,7 +147,7 @@ namespace Simultaneous_equation_evaluator
                     {Coefx, Coefy },
                     {Coefx1, Coefy1 }
                 };
-                int[,] matrixB = new int[,]
+                double[,] matrixB = new double[,]
                 {
                     {equalss },
                     {equalss1 }
@@ -155,6 +155,7 @@ namespace Simultaneous_equation_evaluator
                 double determinantOfM = GetDetOf2By2Matrix(matrixM);
                 double[,] matrixMReversed = Inverse2By2(matrixM, determinantOfM);
                 MessageBox.Show($"{matrixMReversed[0,0]} ; {matrixMReversed[0,1]}\n{matrixMReversed[1,0]} ; {matrixMReversed[1,1]}");
+                double[,] results = MultiplyTwoMatrices(matrixMReversed, matrixB);
 
             }
             
@@ -195,11 +196,33 @@ namespace Simultaneous_equation_evaluator
                 {matM[1,1],-matM[0,1] },
                 {- matM[1,0], matM[0,0] }
             };
-            PrematReturn[0, 0] = PrematReturn[0, 0] * (1 / detM);
+            for(int i = 0; i <= PrematReturn.GetUpperBound(0); i++)
+            {
+                for(int x = 0; x <= PrematReturn.GetUpperBound(1); x++)
+                {
+                    PrematReturn[i, x] *= (1 / detM);
+                }
+            }
+           /* PrematReturn[0, 0] = PrematReturn[0, 0] * (1 / detM);
             PrematReturn[0, 1] = PrematReturn[0, 1] * (1 / detM);
             PrematReturn[1, 0] = PrematReturn[1, 0] * (1 / detM);
             PrematReturn[1, 1] = PrematReturn[1, 1] * (1 / detM);
+            */
             return PrematReturn;
+        }
+        public static double[,] MultiplyTwoMatrices(double[,] MatCoef,double[,] MatAns)
+        {
+            double x = (MatCoef[0, 0] * MatAns[0, 0]) + (MatCoef[0, 1] * MatAns[1, 0]);
+            double y = (MatCoef[1, 0] * MatAns[0, 0]) + (MatCoef[1, 1] * MatAns[1, 0]);
+            double[,] ForReturn = new double[,]
+            {
+                {x },
+                {y }
+                   
+                
+
+            };
+            return ForReturn;
         }
         
     }

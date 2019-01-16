@@ -147,6 +147,15 @@ namespace Simultaneous_equation_evaluator
                     {Coefx, Coefy },
                     {Coefx1, Coefy1 }
                 };
+                int[,] matrixB = new int[,]
+                {
+                    {equalss },
+                    {equalss1 }
+                };
+                double determinantOfM = GetDetOf2By2Matrix(matrixM);
+                double[,] matrixMReversed = Inverse2By2(matrixM, determinantOfM);
+                MessageBox.Show($"{matrixMReversed[0,0]} ; {matrixMReversed[0,1]}\n{matrixMReversed[1,0]} ; {matrixMReversed[1,1]}");
+
             }
             
 
@@ -172,5 +181,26 @@ namespace Simultaneous_equation_evaluator
             }
           
         }
+        public static double GetDetOf2By2Matrix(int[,] matM)
+        {
+            double a = matM[0, 0] * matM[1, 1];
+            double b = matM[0, 1] * matM[1, 0];
+            double ans = a - b;
+            return ans;
+        }
+        public static double[,] Inverse2By2(int[,] matM, double detM)
+        {
+            double[,] PrematReturn = new double[,]
+            {
+                {matM[1,1],-matM[0,1] },
+                {- matM[1,0], matM[0,0] }
+            };
+            PrematReturn[0, 0] = PrematReturn[0, 0] * (1 / detM);
+            PrematReturn[0, 1] = PrematReturn[0, 1] * (1 / detM);
+            PrematReturn[1, 0] = PrematReturn[1, 0] * (1 / detM);
+            PrematReturn[1, 1] = PrematReturn[1, 1] * (1 / detM);
+            return PrematReturn;
+        }
+        
     }
 }

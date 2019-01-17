@@ -82,8 +82,12 @@ namespace Simultaneous_equation_evaluator
                             equalss = Convert.ToInt32(equals) - Convert.ToInt32(constant);
                         }
                     }
+                    else
+                    {
+                        equalss = Convert.ToInt32(equals);
+                    }
 
-                    MessageBox.Show($"Debug info: {preXcoefficient}:{preYcoefficient}:{equalss}");
+                    
                     Coefx = Convert.ToInt32(preXcoefficient);
                     Coefy = Convert.ToInt32(preYcoefficient);
 
@@ -135,8 +139,12 @@ namespace Simultaneous_equation_evaluator
                             equalss1 = Convert.ToInt32(equals1) - Convert.ToInt32(constant1);
                         }
                     }
+                    else
+                    {
+                        equalss1 = Convert.ToInt32(equals1);
+                    }
 
-                    MessageBox.Show($"Debug info: {preXcoefficient1}:{preYcoefficient1}:{equalss1}");
+                   
                     Coefx1 = Convert.ToInt32(preXcoefficient1);
                     Coefy1 = Convert.ToInt32(preYcoefficient1);
 
@@ -156,7 +164,7 @@ namespace Simultaneous_equation_evaluator
                 double[,] matrixMReversed = Inverse2By2(matrixM, determinantOfM);
                 MessageBox.Show($"{matrixMReversed[0,0]} ; {matrixMReversed[0,1]}\n{matrixMReversed[1,0]} ; {matrixMReversed[1,1]}");
                 double[,] results = MultiplyTwoMatrices(matrixMReversed, matrixB);
-
+                MessageBox.Show($"Solutions are:\nx = {results[0,0]}\ny = {results[1,0]}");
             }
             
 

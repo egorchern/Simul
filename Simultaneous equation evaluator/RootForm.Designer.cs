@@ -60,6 +60,7 @@
             this.button2.TabIndex = 2;
             this.button2.Text = "3 variables\r\n(x,y and z)\r\n";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Visible = false;
             // 
             // RootForm
             // 

@@ -1,0 +1,10 @@
+C:\Users\Asus\Source\Repos\Simul\Simultaneous equation evaluator\bin\Release\Simultaneous equation evaluator.exe.config
+C:\Users\Asus\Source\Repos\Simul\Simultaneous equation evaluator\bin\Release\Simultaneous equation evaluator.exe
+C:\Users\Asus\Source\Repos\Simul\Simultaneous equation evaluator\bin\Release\Simultaneous equation evaluator.pdb
+C:\Users\Asus\Source\Repos\Simul\Simultaneous equation evaluator\obj\Release\Simultaneous_equation_evaluator._2VariableEvaluator.resources
+C:\Users\Asus\Source\Repos\Simul\Simultaneous equation evaluator\obj\Release\Simultaneous_equation_evaluator.RootForm.resources
+C:\Users\Asus\Source\Repos\Simul\Simultaneous equation evaluator\obj\Release\Simultaneous_equation_evaluator.Properties.Resources.resources
+C:\Users\Asus\Source\Repos\Simul\Simultaneous equation evaluator\obj\Release\Simultaneous equation evaluator.csproj.GenerateResource.cache
+C:\Users\Asus\Source\Repos\Simul\Simultaneous equation evaluator\obj\Release\Simultaneous equation evaluator.csproj.CoreCompileInputs.cache
+C:\Users\Asus\Source\Repos\Simul\Simultaneous equation evaluator\obj\Release\Simultaneous equation evaluator.exe
+C:\Users\Asus\Source\Repos\Simul\Simultaneous equation evaluator\obj\Release\Simultaneous equation evaluator.pdb
